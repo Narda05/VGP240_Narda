@@ -1,0 +1,12 @@
+
+SetResolution(50, 50, 10, true) 
+
+SetFillMode(solid)
+BeginDraw(triangle)
+
+Vertex(0.99, 25,0.973, 0.851, 0.176)
+Vertex(47, 1, 0.55,0.54,0.24)
+Vertex(15, 40, 0, 0, 0)
+
+
+EndDraw()

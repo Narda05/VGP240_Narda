@@ -1,7 +1,7 @@
 #include "MathHelper.h" //inside the proyect mean ""
 #include <cmath>  //autside the proyect mean <>
 
-bool MathHelper::IsEquial(float a, float b)
+bool MathHelper::IsEqual(float a, float b)
 {
 	//floting point like 1.0000001 0.9999999 
 	return abs(a - b) < 0.01f; 

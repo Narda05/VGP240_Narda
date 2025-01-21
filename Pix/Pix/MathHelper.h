@@ -6,7 +6,7 @@
 
 namespace MathHelper
 {
-	bool IsEquial(float s, float b); 
+	bool IsEqual(float s, float b); 
 
 
 	float MagnitudeSquared(const Vector2& v);
