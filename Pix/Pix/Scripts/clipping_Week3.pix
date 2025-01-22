@@ -1,0 +1,9 @@
+SetResolution(50, 50, 10, true)
+
+SetViewport(10, 10, 30, 30)
+//ShowViewport(true)
+
+BeginDraw(point)
+Vertex(10, 10, 1, 0, 0)
+Vertex(40, 40, 1, 0, 0)
+EndDraw()

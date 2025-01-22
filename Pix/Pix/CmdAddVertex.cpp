@@ -20,9 +20,9 @@ bool CmdAddVertex::Execute(const std::vector<std::string>& params)
 	{
 		x = std::stof(params[0]);
 		y = std::stof(params[1]);
-		z = std::stof(params[2]);
-		r = std::stof(params[3]);
-		g = std::stof(params[4]);
+		r = std::stof(params[2]);
+		g = std::stof(params[3]);
+		b = std::stof(params[4]);
 	}
 	else if (params.size() == 6)
 	{
