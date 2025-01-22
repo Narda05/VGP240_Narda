@@ -99,9 +99,6 @@
     <ClCompile Include="Rasterizer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Viewport.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="MathHelper.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -125,6 +122,15 @@
     </ClCompile>
     <ClCompile Include="CmdShowViewport.cpp">
       <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CmdSetClipping.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewport.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Clipper.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +170,6 @@
     <ClInclude Include="Rasterizer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Viewport.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -199,6 +202,15 @@
     </ClInclude>
     <ClInclude Include="CmdShowViewport.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CmdSetClipping.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Clipper.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

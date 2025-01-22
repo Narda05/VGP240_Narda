@@ -12,6 +12,7 @@
 
 #include "CmdSetViewport.h"
 #include "CmdShowViewport.h"
+#include "CmdSetClipping.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -42,6 +43,7 @@ CommandDictionary::CommandDictionary()
 	// Viewport commands
 	RegisterCommand<CmdSetViewport>();
 	RegisterCommand<CmdShowViewport>();
+	RegisterCommand<CmdSetClipping>();
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()

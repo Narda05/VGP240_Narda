@@ -24,5 +24,4 @@ private:
 	float mWidth = 0.0f;
 	float mHeight = 0.0f;
 	bool mShowViewport = false;
-	bool mClipping = false;
 };

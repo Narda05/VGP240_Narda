@@ -15,5 +15,5 @@ bool CmdSetViewport::Execute(const std::vector<std::string>& params)
 
 	Viewport::Get()->SetViewport(x, y, width, height);
 	return true;
-	
+
 }

@@ -7,12 +7,12 @@ class CmdShowViewport : public Command
 public:
 	const char* GetName() override
 	{
-		return "showviewport";
+		return "ShowViewport";
 	}
 	const char* GetDescription() override
 	{
 		return 
-			"Show the viewport"
+			"ShowViewport"
 			"\n"
 			"- show or hides yhe viewport";
 	}
