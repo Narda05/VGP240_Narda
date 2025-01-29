@@ -212,6 +212,9 @@
     <ClInclude Include="Clipper.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Editor">

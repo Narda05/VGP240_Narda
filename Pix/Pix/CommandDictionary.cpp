@@ -14,6 +14,8 @@
 #include "CmdShowViewport.h"
 #include "CmdSetClipping.h"
 
+#include "MathHelper.h"
+
 CommandDictionary* CommandDictionary::Get()
 {
 	static CommandDictionary sInstance;
@@ -44,6 +46,12 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdSetViewport>();
 	RegisterCommand<CmdShowViewport>();
 	RegisterCommand<CmdSetClipping>();
+
+	Matrix4 rotX = Matrix4::RotationX(45 * 3.141592 / 180.00f);
+	Matrix4 trans = Matrix4::Translation(10.0f, 5.0f, 3.0f);
+	Matrix4 final = rotX * trans; 
+	Matrix4 invFinal = MathHelper::Inverse(final);
+	Matrix4 identity = final * invFinal; 
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()
