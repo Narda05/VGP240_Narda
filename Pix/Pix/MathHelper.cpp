@@ -8,6 +8,12 @@ bool MathHelper::IsEqual(float a, float b)
 
 }
 
+void MathHelper::FlattenVectorScreenCoords(Vector3& v)
+{
+	v.x = floor(v.x + 0.5f);
+	v.y = floor(v.y + 0.5f);
+}
+
 float MathHelper::MagnitudeSquared(const Vector2& v)
 {
 	return v.x * v.x + v.y * v.y;
