@@ -1,4 +1,5 @@
 #include "Rasterizer.h"
+#include "DepthBuffer.h"
 
 void DrawLineLow(const Vertex& left, const Vertex& right)
 {
@@ -49,8 +50,13 @@ void Rasterizer::DrawPoint(int x, int y)
 
 void Rasterizer::DrawPoint(const Vertex& vertex)
 {
+	int x = static_cast<int>(vertex.pos.x);
+	int y = static_cast<int>(vertex.pos.y);
+	if (DepthBuffer::Get()->CheckDepthBuffer(x, y, vertex.pos.z))
+	{
 	SetColor(vertex.color);
-	DrawPoint(static_cast<int>(vertex.pos.x), static_cast<int>(vertex.pos.y));
+	DrawPoint(x,y);
+	}
 }
 
 void Rasterizer::DrawLine(const Vertex& a, const Vertex& b)
