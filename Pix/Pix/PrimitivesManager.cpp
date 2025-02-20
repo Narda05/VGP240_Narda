@@ -4,6 +4,7 @@
 
 #include "MatrixStack.h"
 #include "Camera.h"
+#include "LightManager.h"
 
 extern float gResolutionX;
 extern float gResolutionY;
@@ -44,6 +45,14 @@ namespace
 		}
 
 		return false;
+	}
+
+	Vector3 CreateFaceNormal(const std::vector<Vertex>& triangle)
+	{
+		Vector3 abDir = triangle[1].pos - triangle[0].pos;
+		Vector3 acDir = triangle[2].pos - triangle[0].pos;
+		Vector3 faceNorm = MathHelper::Normalize(MathHelper::Cross(abDir, acDir));
+		return faceNorm;
 	}
 }
 
@@ -128,9 +137,23 @@ bool PrimitivesManager::EndDraw() //we what to draw somthing
 				Matrix4 matView = Camera::Get()->GetViewMatrix();
 				Matrix4 matProj = Camera::Get()->GetProjectionMatrix();
 				Matrix4 matScreen = GetScreenTransform();
-				Matrix4 matNDC = matWorld * matView * matProj;
+				Matrix4 matNDC = matView * matProj;
 				
-				//transform position into NDC space
+				//transform position into World space
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matWorld);
+				}
+
+				//Apply lighting to the vertices
+				//Lightung needs to be calculated in Worldspace(vertex  lighting and pixel lighting)
+				Vector3 faceNormal = CreateFaceNormal(triangle);
+				for (size_t t = 0; t < triangle.size(); ++t)
+				{
+					triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos,faceNormal);
+				}
+
+
 				for (size_t t = 0; t < triangle.size(); ++t)
 				{
 					triangle[t].pos = MathHelper::TransformCoord(triangle[t].pos, matNDC);
