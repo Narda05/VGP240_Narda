@@ -3,10 +3,6 @@
 #include "Command.h"
 
 
-
-
-//void SetMaterialShininess(float shininess);
-
 class CmdSetMaterialEmissive : public Command
 {
 public:
@@ -16,14 +12,13 @@ public:
 	}
 	const char* GetDescription() override
 	{
-		return "SetMaterialEmissive(r, g, b) \n"
+		return
+			"SetMaterialEmissive(r, g, b)\n"
 			"\n"
-			"- sets the emissive color for a meterial"; 
+			"- sets the emissive color for a meterial";
 	}
 	bool Execute(const std::vector<std::string>& params) override;
 };
-
-
 class CmdSetMaterialAmbient : public Command
 {
 public:
@@ -33,16 +28,15 @@ public:
 	}
 	const char* GetDescription() override
 	{
-		return "SetMaterialAmbient(r, g, b) \n"
+		return
+			"SetMaterialAmbient(r, g, b)\n"
 			"\n"
-			"- sets the emissive color for a meterial";
+			"- sets the ambient color for a meterial";
 	}
 	bool Execute(const std::vector<std::string>& params) override;
 };
-
 class CmdSetMaterialDiffuse : public Command
 {
-
 public:
 	const char* GetName() override
 	{
@@ -50,16 +44,15 @@ public:
 	}
 	const char* GetDescription() override
 	{
-		return "SetMaterialDiffuse(r, g, b) \n"
+		return
+			"SetMaterialDiffuse(r, g, b)\n"
 			"\n"
-			"- sets the emissive color for a meterial";
+			"- sets the diffuse color for a meterial";
 	}
 	bool Execute(const std::vector<std::string>& params) override;
 };
-
 class CmdSetMaterialSpecular : public Command
 {
-
 public:
 	const char* GetName() override
 	{
@@ -67,15 +60,13 @@ public:
 	}
 	const char* GetDescription() override
 	{
-		return "SetMaterialSpecular(r, g, b) \n"
+		return
+			"SetMaterialSpecular(r, g, b)\n"
 			"\n"
-			"- sets the emissive color for a meterial";
+			"- sets the specular color for a meterial";
 	}
 	bool Execute(const std::vector<std::string>& params) override;
 };
-
-
-
 class CmdSetMaterialShininess : public Command
 {
 public:
@@ -85,9 +76,10 @@ public:
 	}
 	const char* GetDescription() override
 	{
-		return "SetMaterialShininess(shininess) \n"
+		return
+			"SetMaterialShininess(shininess)\n"
 			"\n"
-			"- sets the emissive color for a meterial";
+			"- sets the shininess value for a meterial";
 	}
 	bool Execute(const std::vector<std::string>& params) override;
 };

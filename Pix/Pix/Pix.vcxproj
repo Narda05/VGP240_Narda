@@ -179,6 +179,7 @@
     <ClCompile Include="CmdEnableDepth.cpp" />
     <ClCompile Include="CmdLights.cpp" />
     <ClCompile Include="CmdMaterial.cpp" />
+    <ClCompile Include="CmdModel.cpp" />
     <ClCompile Include="CmdSetCullMode.cpp" />
     <ClCompile Include="CmdDrawPixel.cpp" />
     <ClCompile Include="CmdEndDraw.cpp" />
@@ -187,6 +188,7 @@
     <ClCompile Include="CmdSetColor.cpp" />
     <ClCompile Include="CmdSetFillMode.cpp" />
     <ClCompile Include="CmdSetResolution.cpp" />
+    <ClCompile Include="CmdSetShadeMode.cpp" />
     <ClCompile Include="CmdSetViewport.cpp" />
     <ClCompile Include="CmdShowViewport.cpp" />
     <ClCompile Include="CmdVarBool.cpp" />
@@ -199,6 +201,8 @@
     <ClCompile Include="MaterialManager.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="MatrixStack.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="PixEditor.cpp" />
     <ClCompile Include="PrimitivesManager.cpp" />
     <ClCompile Include="Rasterizer.cpp" />
@@ -222,6 +226,7 @@
     <ClInclude Include="CmdEnableDepth.h" />
     <ClInclude Include="CmdLights.h" />
     <ClInclude Include="CmdMaterial.h" />
+    <ClInclude Include="CmdModel.h" />
     <ClInclude Include="CmdSetCullMode.h" />
     <ClInclude Include="CmdDrawPixel.h" />
     <ClInclude Include="CmdEndDraw.h" />
@@ -230,6 +235,7 @@
     <ClInclude Include="CmdSetColor.h" />
     <ClInclude Include="CmdSetFillMode.h" />
     <ClInclude Include="CmdSetResolution.h" />
+    <ClInclude Include="CmdSetShadeMode.h" />
     <ClInclude Include="CmdSetViewport.h" />
     <ClInclude Include="CmdShowViewport.h" />
     <ClInclude Include="CmdVarBool.h" />
@@ -245,6 +251,8 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="MatrixStack.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelManager.h" />
     <ClInclude Include="PixEditor.h" />
     <ClInclude Include="PrimitivesManager.h" />
     <ClInclude Include="Rasterizer.h" />
