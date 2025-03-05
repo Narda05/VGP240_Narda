@@ -9,10 +9,16 @@ public:
 
 	void Clear();
 	void SetTexture(const std::string& fileName); 
+	void SetUseFilter(bool useFilter);
+	void SetAddressMode(AddressMode addressMode);
 
 	X::Color SampleColor(const X::Color& uv) const;
 
 private: 
 	std::vector<std::unique_ptr<Texture>> mTextures;
 	const Texture* mCurrentTexture = nullptr;
+
+	AddressMode mAdressMode = AddressMode::Clamp;
+	bool mUseFilter = false;
+	
 };

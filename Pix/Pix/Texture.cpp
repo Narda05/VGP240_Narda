@@ -36,6 +36,33 @@ namespace
         return newStride;
     }
 #pragma pack(pop)
+
+	X::Color GetBilinearFilterPixelColor(const Texture& tex, float u, float v)
+	{
+		//step1, convert u,v coordinates to texel coordinates
+		float uTex = u * static_cast<float>(tex.GetWidth());
+		float vTex = v * static_cast<float>(tex.GetHeight());
+
+		//step , convert the floats to ints to get the pixel indices 
+		int uTextInt = static_cast<int>(uTex);
+		int vTextInt = static_cast<int>(vTex);
+
+		//step 3, get the float remainder as a ratio
+		float uRatio = uTex - static_cast<float>(uTextInt);
+		float vRatio = vTex - static_cast<float>(vTextInt);
+		
+		//step 4, get the opposite ratios (eg: if uRatio is 0.4, uOpposite is 0.6)
+		float uOpposite = 1.0f - uRatio;
+		float vOpposite = 1.0f - vRatio;
+
+		//step 5, get all neighboring pixels colors
+		X::Color a = tex.GetPixel(uTextInt, vTextInt) * uOpposite;
+		X::Color b = tex.GetPixel(uTextInt + 1, vTextInt) * uRatio;
+		X::Color c = tex.GetPixel(uTextInt, vTextInt + 1) * uOpposite;
+		X::Color d = tex.GetPixel(uTextInt + 1, vTextInt + 1) * uRatio;
+
+		return (a + b) * vOpposite + (c + d) * vRatio;
+	}
 }
 
 void Texture::Load(const std::string& fileName)
@@ -98,12 +125,56 @@ int Texture::GetHeight() const
 {
 	return mHeight;
 }
-X::Color Texture::GetPixel(float u, float v) const
+X::Color Texture::GetPixel(float u, float v, bool filter, AddressMode addressMode) const
 {
+	switch (addressMode)
+	{
+	case AddressMode::Border:
+		if (u > 1.0f || u < 0.0f || v > 1.0f || v < 0.0f)
+		{
+			return X::Colors::HotPink;
+		}
+	break;
+	case AddressMode::Clamp:
+	{
+		u = std::clamp(u, 0.0f, 1.0f);
+		v = std::clamp(v, 0.0f, 1.0f);
+
+	}
+	break;
+	case AddressMode::Wrap:
+	{
+		while (u > 1.0f) { u -= 1.0f; }
+		while (u < 0.0f) { u += 1.0f; }
+		while (v > 1.0f) { v -= 1.0f; }
+		while (v < 0.0f) { v += 1.0f; }
+
+	}
+	break;
+	case AddressMode::Mirror:
+	{
+		while (u > 2.0f) { u -= 2.0f; }
+		while (u < 0.0f) { u += 2.0f; }
+		u = (u > 1.0f) ? 2.0f - u : u;
+		while (v > 2.0f) { v -= 2.0f; }
+		while (v < 0.0f) { v += 2.0f; }
+		v = (v > 1.0f) ? 2.0f - v : v;
+	}
+	break;
+	default: 
+		break;
+	}
+
+	if (filter)
+	{
+		return GetBilinearFilterPixelColor(*this, u, v);
+	}
+
 	int uIndex = static_cast<int>(u * (mWidth-1));
 	int vIndex = static_cast<int>(v * (mHeight - 1));
 	return GetPixel(uIndex, vIndex);
 }
+
 X::Color Texture::GetPixel(int u, int v) const
 {
 	u = std::clamp(u, 0, mWidth - 1);

@@ -70,13 +70,17 @@ PrimitivesManager::PrimitivesManager()
 void PrimitivesManager::OnNewFrame()
 {
 	mCullMode = CullMode::Back;
+	mCorrectUV = false;
 }
 
 void PrimitivesManager::SetCullMode(CullMode mode)
 {
 	mCullMode = mode;
 }
-
+void PrimitivesManager::SetCorrectUV(bool correctUV)
+{
+	mCorrectUV = correctUV;
+}
 
 bool PrimitivesManager::BeginDraw(Topology topology, bool applyTransform)
 {
@@ -183,6 +187,17 @@ bool PrimitivesManager::EndDraw() //we what to draw somthing
 						{
 							triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
 						}
+					}
+				}
+				else if (mCorrectUV)
+				{
+					//apply perspective uv correctionin view space 
+					for (size_t t = 0; t < triangle.size(); ++t)
+					{
+						Vector3 viewSpacePos = MathHelper::TransformCoord(triangle[t].posWorld, matView);
+						triangle[t].color.x /= viewSpacePos.z;
+						triangle[t].color.y /= viewSpacePos.z;
+						triangle[t].color.w = 1.0f / viewSpacePos.z;
 					}
 				}
 				//transform position into NDC space

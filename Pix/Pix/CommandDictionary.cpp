@@ -23,6 +23,10 @@
 #include "CmdLights.h" 
 #include "CmdModel.h"
 #include "CmdSetShadeMode.h"
+#include "CmdSetTexture.h"
+#include "CmdSetCorrectUV.h"
+#include "CmdSetUseFilter.h"
+#include "CmdSetAddressMode.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -54,6 +58,10 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdAddVertex>();
 	RegisterCommand<CmdSetCullMode>();
 	RegisterCommand<CmdModel>();
+	RegisterCommand<CmdSetTexture>();
+	RegisterCommand<CmdSetCorrectUV>();
+	RegisterCommand<CmdSetUseFilter>();
+	RegisterCommand<CmdSetAddressMode>();
 
 	// Viewport commands
 	RegisterCommand<CmdSetViewport>();
