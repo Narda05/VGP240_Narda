@@ -64,7 +64,7 @@ void Model::Load(const std::string& fileName)
 		std::vector<uint32_t> normalsCount; 
 		normals.resize(positions.size());
 		normalsCount.resize(positions.size());
-		for (size_t i = 0; i < positianIndices.size(); i += 3)
+		for (size_t i = 2; i < positianIndices.size(); i += 3)
 		{
 			// get indices of trinangle
 			uint32_t index0 = positianIndices[i - 2] - 1;

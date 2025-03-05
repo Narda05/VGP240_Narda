@@ -91,7 +91,7 @@ class CmdAddSpotLight : public Command
 public:
 	const char* GetName() override
 	{
-		return "AddPointLight";
+		return "AddSpotLight";
 	}
 	const char* GetDescription() override
 	{

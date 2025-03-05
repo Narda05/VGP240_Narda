@@ -163,24 +163,28 @@ bool PrimitivesManager::EndDraw() //we what to draw somthing
 						triangle[t].norm = MathHelper::TransformNormal(triangle[t].norm, matWorld);
 					}
 				}
-				//Apply lighting to the vertices
-				//Lighting needs to be calculated in Worldspace(vertex  lighting and pixel lighting)
-				
-				
-				if (shadeMode == ShadeMode::Flat)
+
+				//if color are UVs(z< 0.0f) do not apply flat or gouraud shade mode lighting
+				// color is not a valid color 
+				if (triangle[0].color.z >= 0.0f)
 				{
-					triangle[0].color *= LightManager::Get()->ComputeLightColor(triangle[0].pos, triangle[0].norm);
-					triangle[1].color = triangle[0].color;
-					triangle[2].color = triangle[0].color;
-				}
-				else if(shadeMode == ShadeMode::Gouraud)
-				{
-					for (size_t t = 0; t < triangle.size(); ++t)
+					//Apply lighting to the vertices
+					//Lighting needs to be calculated in Worldspace(vertex  lighting and pixel lighting)
+
+					if (shadeMode == ShadeMode::Flat)
 					{
-						triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
+						triangle[0].color *= LightManager::Get()->ComputeLightColor(triangle[0].pos, triangle[0].norm);
+						triangle[1].color = triangle[0].color;
+						triangle[2].color = triangle[0].color;
+					}
+					else if (shadeMode == ShadeMode::Gouraud)
+					{
+						for (size_t t = 0; t < triangle.size(); ++t)
+						{
+							triangle[t].color *= LightManager::Get()->ComputeLightColor(triangle[t].pos, triangle[t].norm);
+						}
 					}
 				}
-
 				//transform position into NDC space
 				for (size_t t = 0; t < triangle.size(); ++t)
 				{

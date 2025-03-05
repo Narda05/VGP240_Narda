@@ -81,7 +81,7 @@ X::Color SpotLight::ComputeLightColor(const Vector3& position, const Vector3& no
 	MaterialManager* mm = MaterialManager::Get();
 
 
-	Vector3 L = -mPosition - position;
+	Vector3 L = mPosition - position;
 	float distance = MathHelper::Magnitude(L);
 	L /= distance;
 
@@ -120,7 +120,7 @@ void SpotLight::SetPosition(const Vector3& position)
 }
 void SpotLight::SetDirection(const Vector3& direction)
 {
-	mDirection = direction;
+	mDirection = MathHelper::Normalize(direction);
 }
 void SpotLight::SetAttenuation(float constant, float linear, float quadratic)
 {
