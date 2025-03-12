@@ -20,7 +20,7 @@ float $rotZ = 0, 0.1
 
 bool $correctUV = false
 bool $useFilter = false
-SetAddressMode(Mirror)
+//SetAddressMode(Mirror)
 
 SetCameraPosition($camX, $camY, $camZ)
 SetCameraDirection($camDirX, $camDirY, $camDirZ)
@@ -37,10 +37,13 @@ PushRotationX($rotX)
 
 SetCorrectUV($correctUV)
 SetUseFilter($useFilter)
-SetAddressMode(mirror)
+SetAddressMode(wrap)
 
-PostProcessingSetEffectType(none)
-//PostProcessingBeginDraw()
+PostProcessingSetEffectType(fisheye)
+
+
+PostProcessingBeginDraw()
+
 BeginDraw(triangle, true)
 
 Vertex(-1, -1, 0, 0, 3, -1)
@@ -51,6 +54,12 @@ Vertex(1, 1, 0, 3, 0, -1)
 Vertex(1, -1, 0, 3, 3, -1)
 
 EndDraw()
+PostProcessingEndDraw()
+
+
+
+
+
 
 
 

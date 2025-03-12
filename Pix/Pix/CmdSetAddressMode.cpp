@@ -9,19 +9,19 @@ bool CmdSetAddressMode::Execute(const std::vector<std::string>& params)
 	}
 
 	AddressMode addressMode = AddressMode::Clamp;
-	if (params[0] == "Border")
+	if (params[0] == "border")
 	{
 		addressMode = AddressMode::Border;
 	}
-	else if (params[0] == "Clamp")
+	else if (params[0] == "clamp")
 	{
 		addressMode = AddressMode::Clamp;
 	}
-	else if (params[0] == "Wrap")
+	else if (params[0] == "wrap")
 	{
 		addressMode = AddressMode::Wrap;
 	}
-	else if (params[0] == "Mirror")
+	else if (params[0] == "mirror")
 	{
 		addressMode = AddressMode::Mirror;
 	}
