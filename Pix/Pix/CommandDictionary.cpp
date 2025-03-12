@@ -27,6 +27,7 @@
 #include "CmdSetCorrectUV.h"
 #include "CmdSetUseFilter.h"
 #include "CmdSetAddressMode.h"
+#include "CmdPostProcessing.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -97,6 +98,11 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdAddDirectionalLight>();
 	RegisterCommand<CmdAddPointLight>();
 	RegisterCommand<CmdAddSpotLight>();
+
+	//Post proccecing commands
+	RegisterCommand<CmdPostProcessingBeginDraw>();
+	RegisterCommand<CmdPostProcessingEndDraw>();
+	RegisterCommand<CmdPostProcessingSetEffectType>();
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()
