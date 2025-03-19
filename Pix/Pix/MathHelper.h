@@ -2,6 +2,8 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Matrix4.h"
+#include "Ray.h"
+#include "Sphere.h"
 
 // share equation
 
@@ -37,4 +39,6 @@ namespace MathHelper
 	Matrix4 Transpose(const Matrix4& m);
 	Matrix4 Adjoint(const Matrix4& m);
 	float Determinant(const Matrix4& m);
+
+	bool Intersects(const Ray& ray, const Sphere& sphere, float& distance);
 }

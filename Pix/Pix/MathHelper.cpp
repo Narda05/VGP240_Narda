@@ -131,5 +131,31 @@ float MathHelper::Determinant(const Matrix4& m)
 	return det;
 }
 
+bool MathHelper::Intersects(const Ray& ray, const Sphere& sphere, float& distance)
+{
+	Vector3 v = sphere.origin - ray.origin;
+	float t = Dot(v, ray.direction);
+
+	Vector3 closestPoint = ray.origin + (ray.direction * t); 
+	float closesPointToCenterSqr = MagnitudeSquared(closestPoint - sphere.origin);
+	float radiusSqr = sphere.radius * sphere.radius;
+	if (closesPointToCenterSqr > radiusSqr)
+	{
+		return false;
+	}
+
+	float oppositeSide = sqrt(radiusSqr - closesPointToCenterSqr);
+	if (MagnitudeSquared(ray.origin - sphere.origin) < radiusSqr)
+	{
+		distance = t + oppositeSide;
+	}
+	else
+	{
+		distance = t - oppositeSide;
+	}
+
+	return true;
+}
+
 
 
